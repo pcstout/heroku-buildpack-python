@@ -40,6 +40,10 @@ UBUNTU_VERSION="${STACK/heroku-}.04"
 ARCH=$(dpkg --print-architecture)
 PYTHON_URL="${S3_BASE_URL}/${PYTHON_VERSION}-ubuntu-${UBUNTU_VERSION}-${ARCH}.tar.zst"
 
+echo "S3_BASE_URL: ${S3_BASE_URL}"
+echo "Python Version: ${PYTHON_VERSION}"
+echo "Fetching Python From: ${PYTHON_URL}"
+
 if ! curl --output /dev/null --silent --head --fail --retry 3 --retry-connrefused --connect-timeout 10 "${PYTHON_URL}"; then
   puts-warn
   puts-warn "Requested runtime '${PYTHON_VERSION}' is not available for this stack (${STACK})."
