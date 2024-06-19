@@ -28,9 +28,6 @@ function eol_python_version_error() {
 # We check for EOL prior to checking if the archive exists on S3, to ensure the more specific EOL error
 # message is still shown for newer stacks where the EOL Python versions might not have been built.
 case "${PYTHON_VERSION}" in
-  python-3.7.+([0-9]))
-    eol_python_version_error "3.7" "June 27th, 2023"
-    ;;
   python-3.6.+([0-9]))
     eol_python_version_error "3.6" "December 23rd, 2021"
     ;;
