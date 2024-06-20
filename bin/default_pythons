@@ -5,15 +5,5 @@
 # the env vars to subprocesses.
 # shellcheck disable=2034
 
-LATEST_312="python-3.12.4"
-LATEST_311="python-3.11.9"
-LATEST_310="python-3.10.14"
-LATEST_39="python-3.9.19"
-LATEST_38="python-3.8.19"
-# TODO: Remove these EOL versions once pipenv-python-version is refactored.
 LATEST_37="python-3.7.17"
-LATEST_36="python-3.6.15"
-LATEST_35="python-3.5.10"
-LATEST_34="python-3.4.10"
-LATEST_27="python-2.7.18"
-DEFAULT_PYTHON_VERSION="${LATEST_312}"
+DEFAULT_PYTHON_VERSION="${LATEST_37}"
