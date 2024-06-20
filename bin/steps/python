@@ -34,11 +34,11 @@ case "${PYTHON_VERSION}" in
   *) ;;
 esac
 
-# The Python runtime archive filename is of form: 'python-X.Y.Z-ubuntu-22.04-amd64.tar.zst'
+# The Python runtime archive filename is of form: 'python-X.Y.Z-ubuntu-22.04-amd64.tar.gz'
 # The Ubuntu version is calculated from `STACK` since it's faster than calling `lsb_release`.
 UBUNTU_VERSION="${STACK/heroku-}.04"
 ARCH=$(dpkg --print-architecture)
-PYTHON_URL="${S3_BASE_URL}/${PYTHON_VERSION}-ubuntu-${UBUNTU_VERSION}-${ARCH}.tar.zst"
+PYTHON_URL="${S3_BASE_URL}/${PYTHON_VERSION}-ubuntu-${UBUNTU_VERSION}-${ARCH}.tar.gz"
 
 echo "S3_BASE_URL: ${S3_BASE_URL}"
 echo "PYTHON_VERSION: ${PYTHON_VERSION}"
@@ -151,7 +151,7 @@ else
   # Prepare destination directory.
   mkdir -p .heroku/python
 
-  if ! curl --silent --show-error --fail --retry 3 --retry-connrefused --connect-timeout 10 "${PYTHON_URL}" | tar --use-compress-program zstd --extract --directory .heroku/python; then
+  if ! curl --silent --show-error --fail --retry 3 --retry-connrefused --connect-timeout 10 "${PYTHON_URL}" | tar xz --directory .heroku/python; then
     # The Python version was confirmed to exist previously, so any failure here is due to
     # a networking issue or archive/buildpack bug rather than the runtime not existing.
     puts-warn "Failed to download/install ${PYTHON_VERSION}"
