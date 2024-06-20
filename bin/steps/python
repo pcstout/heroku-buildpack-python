@@ -151,7 +151,7 @@ else
   # Prepare destination directory.
   mkdir -p .heroku/python
 
-  if ! curl --silent --show-error --fail --retry 3 --retry-connrefused --connect-timeout 10 "${PYTHON_URL}" | tar --zstd --extract --directory .heroku/python; then
+  if ! curl --silent --show-error --fail --retry 3 --retry-connrefused --connect-timeout 10 "${PYTHON_URL}" | tar --use-compress-program zstd --extract --directory .heroku/python; then
     # The Python version was confirmed to exist previously, so any failure here is due to
     # a networking issue or archive/buildpack bug rather than the runtime not existing.
     puts-warn "Failed to download/install ${PYTHON_VERSION}"
